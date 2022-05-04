@@ -21,23 +21,18 @@ export class Conta{
     
     sacar(valor) {
         let taxa = 1;
-        if(this._tipo == "corrente"){
-            taxa = 1.1;
-        }
-        if(this._tipo == "salario"){
-            taxa = 1.05;
-        }
-        if(this._tipo == "empresa"){
-            taxa = 1.15;
-        }
+        return this._sacar(valor, taxa);
+    }
+
+    _sacar(valor, taxa){
         const valorSacado = taxa * valor;
         if (this._saldo >= valorSacado) {
             this._saldo -= valorSacado;
-            return valor;
+            return valorSacado;
         }
-
+        return 0;
     }
-
+    
     depositar(valor) {
         if(valor <= 0) {
             return;
@@ -51,5 +46,3 @@ export class Conta{
     conta.depositar(valorSacado);
 
 	}
-
-}
